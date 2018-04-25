@@ -7,6 +7,7 @@ const userRouter = require('./user/user.js')
 
 
 router.use('/wiki', wikiRouter);
+router.use('/users',userRouter);
 
 
 module.exports = router;

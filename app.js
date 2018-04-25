@@ -34,4 +34,5 @@ models.User.sync()
 .catch(console.error.bind(console));
 
 
-//models.db.sync({force: true})  --> this would restart the db and re-sync. 
+models.db.sync({force: false}) ;
+// --> this would restart the db and re-sync. 
