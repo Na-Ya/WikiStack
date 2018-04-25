@@ -5,13 +5,18 @@ const nunjucks = require('nunjucks');
 const app = express();
 const models = require('./models');
 const routes = require('./routes')
+const path = require('path'); // from twitter.js
 
 const env = nunjucks.configure('views', {noCache: true});
 
-app.set('view engine', 'html');
 app.engine('html', nunjucks.render);
+app.set('view engine', 'html');
 
 app.use(morgan('dev'));
+
+app.use(bodyParser.urlencoded({ extended: true })); 
+app.use(bodyParser.json());
+app.use(express.static(path.join(__dirname, '/public'))); // from twitter.js
 
 app.use(routes)
 
@@ -28,6 +33,5 @@ models.User.sync()
 })
 .catch(console.error.bind(console));
 
-// app.use(express.static(path.join(__dirname, '/views')))
 
 //models.db.sync({force: true})  --> this would restart the db and re-sync. 

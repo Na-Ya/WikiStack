@@ -1,18 +1,19 @@
 const express = require('express');
 const wikiRouter = express.Router();
 const models = require('../../models');
+// const nunjucks = require('nunjucks');
 
 
-wikiRouter.get('/', (req, res, next)=>{
-    // res.render('index');
-})
-
-wikiRouter.get('/add', (req, res, next)=>{
-    res.render('addpage');
-})
-
-wikiRouter.post('/', (req, res ,next)=>{
-
-})
+wikiRouter.get('/', function(req, res, next) {
+    res.send('WEIRD TEST');
+  });
+  
+  wikiRouter.post('/', function(req, res, next) {
+    res.send('response to POST request to /wiki/');
+  });
+  
+  wikiRouter.get('/add', function(req, res, next) {
+    res.render('addpage')
+  });
 
 module.exports = wikiRouter;
