@@ -15,7 +15,6 @@ const Page = db.define('page', {
 		get() {
 
             const route = this.getDataValue('urlTitle');
-            console.log('building get >>>>',route)
 			return `/wiki/${route}`;
 		}
 	},
@@ -46,6 +45,11 @@ const User = db.define('user', {
 		}
 	}
 });
+
+Page.belongsTo(User, {
+	as: 'author'
+});
+
 
 function generateUrlTitle (title) {
     if (title) {
