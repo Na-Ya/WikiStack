@@ -45,8 +45,9 @@ wikiRouter.get('/:urlTitle', function(req, res, next) {
 		}
 	})
 		.then(function(foundPage) {
-      let obj = foundPage.dataValues;
-      res.render('wikipage', obj);
+      res.render('wikipage', {
+        page: foundPage
+      });
 		})
 		.catch(next);
 });
