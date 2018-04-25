@@ -17,11 +17,12 @@ wikiRouter.post('/', (req, res, next) => {
 		urlTitle: req.body.title,
 		date: new Date().toString()
 	});
-  currentPage.save()
-  .then(function(page) {
-    res.redirect(page.urlTitle);	
-  })
-  .catch(next);
+	currentPage
+		.save()
+		.then(function(page) {
+			res.redirect(page.urlTitle);
+		})
+		.catch(next);
 });
 
 // this is incomplete, we began adding the user stuff.
@@ -45,22 +46,19 @@ wikiRouter.get('/:urlTitle', function(req, res, next) {
 		}
 	})
 		.then(function(foundPage) {
-      res.render('wikipage', {
-        page: foundPage
-      });
+			res.render('wikipage', {
+				page: foundPage
+			});
 		})
 		.catch(next);
 });
 
-  wikiRouter.get('/',function(req, res, next){
-    Page.findAll()
-    .then(function(allpages){
-      res.render('index', {
-        pages: allpages
-      }
-    )
-    })
-  })
-
+wikiRouter.get('/', function(req, res, next) {
+	Page.findAll().then(function(allpages) {
+		res.render('index', {
+			pages: allpages
+		});
+	});
+});
 
 module.exports = wikiRouter;
